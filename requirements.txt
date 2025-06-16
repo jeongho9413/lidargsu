@@ -1,0 +1,20 @@
+accelerate==0.31.0
+einops==0.7
+einops-exts==0.0.4
+# git+https://github.com/eniops/eniops.git
+deepinv==0.3.1
+rotary-embedding-torch==0.8.6
+kornia==0.7.4
+matplotlib==3.7.1
+numba==0.59.1
+scipy==1.11.1
+setuptools==69.5.1
+tqdm==4.66.1
+opencv-python-headless==4.10.0.82
+tensorboard==2.14.0
+torchcfm==1.0.5
+# torchiffeq==0.2.4
+# torch==2.2.0+cu121
+# torchvision==0.17.0+cu121
+# torch==2.1.2
+# torchvision==0.17.0
