@@ -40,7 +40,7 @@ Clone this repository:
 
 ```bash
 git clone https://github.com/jeongho9413/lidargsu.git
-cd lidagsu
+cd lidargsu
 ```
 
 Install dependencies:
