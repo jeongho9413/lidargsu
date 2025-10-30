@@ -96,7 +96,7 @@ python main.py --train_path ./datasets/susteck1k/projection/ortho_depth-pos_drop
   --pretrained_path ./model_iter200000.pt \
   --json_path configs/susteck1k/susteck1k.json \
   --dataset susteck1k \
-  --model test \
+  --mode test \
   --num_sample_steps 32
 ````
 
