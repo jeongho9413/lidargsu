@@ -6,7 +6,7 @@
 ## Overview
 
 <p align="center">
-  <img src="assets/lidargsu_network.png" width="900"/></br>
+  <img src="assets/lidargsu_network.png" width="800"/></br>
   <span align="center">Overview of our LidarGSU. The diffusion process operates in the orthographic projection domain with normalized depth values.</span> 
 </p>
 
@@ -14,13 +14,13 @@
 ## Results
 
 <p align="center">
-  <img src="assets/lidargsu_result_gif1.gif" width="900"/></br>
+  <img src="assets/lidargsu_result_gif1.gif" width="800"/></br>
   <span align="center">Upsampled results using LidarGSU on the SUSTeck1K dataset for the Normal attribute.</span> 
 </p>
 
 
 <p align="center">
-  <img src="assets/lidargsu_result_gif3.gif" width="600"/></br>
+  <img src="assets/lidargsu_result_gif3.gif" width="500"/></br>
   <span align="center">The 3D point cloud sequence upsampled by LidarGSU from sparse LiDAR input (VLP-32C).</span> 
 </p>
 
