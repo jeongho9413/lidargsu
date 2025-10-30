@@ -1,24 +1,59 @@
+import numpy as np
+
+import pickle
 import torch
 from torch import nn, einsum
 import torch.nn.functional as F
 from torchvision import transforms as T, utils
 
 from PIL import Image
+from einops import rearrange
 
 
-# tensor of shape (channels, frames, height, width) -> gif
-def video_tensor_to_gif(tensor, path, duration = 100, loop = 0, optimize = True):
+"""
+Tensor of shape (channels, frames, height, width) -> gif
+"""
+def video_tensor_to_gif(tensor, path, duration=100, loop=0, optimize=True):
     images = map(T.ToPILImage(), tensor.unbind(dim = 1))
     first_img, *rest_imgs = images
-    first_img.save(path, save_all = True, append_images = rest_imgs, duration = duration, loop = loop, optimize = optimize)
+    first_img.save(path, save_all=True, append_images=rest_imgs, duration=duration, loop=loop, optimize=optimize)
     return images
 
 
-# gif -> (channels, frame, height, width) tensor
+def pkl_to_gif(pkl_path, gif_path):
+    with open(pkl_path, 'rb') as f:
+        np_video = pickle.load(f)
+
+    """ (f c h w) """
+    F, C, _, _ = np_video.shape
+    assert C in [1, 3], 'check the np_video.shape!'
+
+    print(f'np_video.shape: {np_video.shape}')
+    print(f'np_video.max(): {np_video.max()}')
+    print(f'np_video.min(): {np_video.min()}')
+    print(f'np_video.dtype: {np_video.dtype}')
+    
+    tensor_video = (torch.from_numpy(np_video)).unsqueeze(0)
+    tensor_video = rearrange(tensor_video, 'b f c h w  -> c f h (b w)')
+    video_tensor_to_gif(tensor_video, gif_path)
+
+
+"""
+gif -> (channels, frame, height, width) tensor
+"""
 def gif_to_tensor(path, channels = 3, transform = T.ToTensor()):
     img = Image.open(path)
     tensors = tuple(map(transform, seek_all_images(img, channels = channels)))
     return torch.stack(tensors, dim = 1)
+
+
+def rotation_matrix(rad_value):
+    assert (-np.pi * 2) <= rad_value <= (np.pi * 2), f'Make sure your rad_value: {rad_value}, or degrees?'
+
+    c, s = np.cos(rad_value), np.sin(rad_value)
+    rot_mat = np.array(((c, -s), (s, c)))
+    # rot_mat = np.array([np.cos(rad_value), -np.sin(rad_value)], [np.sin(rad_value), np.cos(rad_value)])
+    return rot_mat
 
 
 def exists(x):

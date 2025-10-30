@@ -33,7 +33,7 @@ from lidargsu.utils.common import *
 
 # Parser
 parser = argparse.ArgumentParser()
-parser.add_argument('--train_path', type=str, default='./datasets/susteck1k_projection/ortho_depth-pos_drop-point_pkl')
+parser.add_argument('--train_path', type=str, default='./datasets/susteck1k/projection/ortho_depth-pos_drop-point_pkl')
 parser.add_argument('--pretrained_path', type=str, default='./model_iter200000.pt')
 parser.add_argument('--json_path', type=str, default='configs/susteck1k/susteck1k.json')
 parser.add_argument('--dataset', type=str, default='kugait30')  # susteck1k | kugait30
